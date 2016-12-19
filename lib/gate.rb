@@ -15,6 +15,7 @@ class Gate
   end
 
   def exit(ticket)
+    raise StaleTicketError if ticket.stale?
     raise ExitSameStationError if ticket.from == name
 
     from = STATIONS.index(ticket.from)
@@ -25,6 +26,11 @@ class Gate
       to = stations.index(name)
     end
     fee = FEES[to - from - 1]
-    ticket.fee >= fee
+    if ticket.fee >= fee
+      ticket.mark_as_stale
+      true
+    else
+      false
+    end
   end
 end

@@ -1,0 +1,2 @@
+class StaleTicketError < StandardError
+end
