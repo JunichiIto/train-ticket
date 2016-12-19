@@ -1,0 +1,2 @@
+class AlreadyEnteredTicketError < StandardError
+end

@@ -96,4 +96,13 @@ describe Gate do
       expect { assert_exit(:umeda, :umeda, 150, false) }.to raise_error(ExitSameStationError)
     end
   end
+
+  context '改札を通った切符でもう一度入場する場合' do
+    example 'エラーが発生する' do
+      ticket = Ticket.new(150)
+      gate_from = Gate.new(:umeda)
+      gate_from.enter(ticket)
+      expect { gate_from.enter(ticket) }.to raise_error(AlreadyEnteredTicketError)
+    end
+  end
 end

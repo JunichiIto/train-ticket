@@ -9,6 +9,8 @@ class Gate
   end
 
   def enter(ticket)
+    raise AlreadyEnteredTicketError unless ticket.from.nil?
+
     ticket.enter(name)
   end
 
