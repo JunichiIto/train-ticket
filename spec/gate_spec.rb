@@ -90,4 +90,10 @@ describe Gate do
       end
     end
   end
+
+  context '同じ駅で降りる場合' do
+    example 'エラーが発生する' do
+      expect { assert_exit(:umeda, :umeda, 150, false) }.to raise_error(ExitSameStationError)
+    end
+  end
 end

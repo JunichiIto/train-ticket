@@ -13,6 +13,8 @@ class Gate
   end
 
   def exit(ticket)
+    raise ExitSameStationError if ticket.from == name
+
     from = STATIONS.index(ticket.from)
     to = STATIONS.index(name)
     if from > to
