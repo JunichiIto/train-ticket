@@ -16,6 +16,7 @@ class Gate
 
   def exit(ticket)
     raise StaleTicketError if ticket.stale?
+    raise NotEnteredTicketError if ticket.from.nil?
     raise ExitSameStationError if ticket.from == name
 
     from = STATIONS.index(ticket.from)

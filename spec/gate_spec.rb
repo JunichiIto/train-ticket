@@ -117,4 +117,12 @@ describe Gate do
       expect { gate_to.exit(ticket) }.to raise_error(StaleTicketError)
     end
   end
+
+  context '改札を通っていない切符で降りる場合' do
+    example 'エラーが発生する' do
+      ticket = Ticket.new(150)
+      gate_to = Gate.new(:juso)
+      expect { gate_to.exit(ticket) }.to raise_error(NotEnteredTicketError)
+    end
+  end
 end
