@@ -21,12 +21,8 @@ class Gate
 
     from = STATIONS.index(ticket.from)
     to = STATIONS.index(name)
-    if from > to
-      stations = STATIONS.reverse
-      from = stations.index(ticket.from)
-      to = stations.index(name)
-    end
-    fee = FEES[to - from - 1]
+    distance = (to - from).abs
+    fee = FEES[distance - 1]
     if ticket.fee >= fee
       ticket.mark_as_stale
       true
