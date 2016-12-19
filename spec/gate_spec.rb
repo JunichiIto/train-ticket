@@ -1,24 +1,24 @@
 require_relative '../spec/spec_helper'
 
 describe Gate do
+  def assert_exit(from, to, fee, result)
+    ticket = Ticket.new(fee)
+    gate_from = Gate.new(from)
+    gate_to = Gate.new(to)
+    gate_from.enter(ticket)
+    expect(gate_to.exit(ticket)).to eq result
+  end
+
   context '下り' do
     context '料金がちょうどの場合' do
       example '通過できる' do
-        ticket = Ticket.new(150)
-        umeda = Gate.new(:umeda)
-        juso = Gate.new(:juso)
-        umeda.enter(ticket)
-        expect(juso.exit(ticket)).to be_truthy
+        assert_exit(:umeda, :juso, 150, true)
       end
     end
 
     context '料金が足りない場合' do
       example '通過できない' do
-        ticket = Ticket.new(150)
-        umeda = Gate.new(:umeda)
-        shonai = Gate.new(:shonai)
-        umeda.enter(ticket)
-        expect(shonai.exit(ticket)).to be_falsey
+        assert_exit(:umeda, :shonai, 150, false)
       end
     end
   end
@@ -26,21 +26,13 @@ describe Gate do
   context '上り' do
     context '料金がちょうどの場合' do
       example '通過できる' do
-        ticket = Ticket.new(150)
-        okamachi = Gate.new(:okamachi)
-        shonai = Gate.new(:shonai)
-        okamachi.enter(ticket)
-        expect(shonai.exit(ticket)).to be_truthy
+        assert_exit(:okamachi, :shonai, 150, true)
       end
     end
 
     context '料金が足りない場合' do
       example '通過できない' do
-        ticket = Ticket.new(150)
-        okamachi = Gate.new(:okamachi)
-        juso = Gate.new(:juso)
-        okamachi.enter(ticket)
-        expect(juso.exit(ticket)).to be_falsey
+        assert_exit(:okamachi, :juso, 150, false)
       end
     end
   end
@@ -67,11 +59,7 @@ describe Gate do
 
     with_them do
       example '判定が正しい' do
-        ticket = Ticket.new(fee)
-        gate_from = Gate.new(from)
-        gate_to = Gate.new(to)
-        gate_from.enter(ticket)
-        expect(gate_to.exit(ticket)).to eq result
+        assert_exit(from, to, fee, result)
       end
     end
   end
@@ -98,11 +86,7 @@ describe Gate do
 
     with_them do
       example '判定が正しい' do
-        ticket = Ticket.new(fee)
-        gate_from = Gate.new(from)
-        gate_to = Gate.new(to)
-        gate_from.enter(ticket)
-        expect(gate_to.exit(ticket)).to eq result
+        assert_exit(from, to, fee, result)
       end
     end
   end
