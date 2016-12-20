@@ -53,15 +53,20 @@ class Gate
     raise NotEnteredTicketError if ticket.from.nil?
     raise ExitSameStationError if ticket.from == name
 
-    from = STATIONS.index(ticket.from)
-    to = STATIONS.index(name)
-    distance = (to - from).abs
-    fee = FEES[distance - 1]
-    if ticket.fee >= fee
+    if exitable?(ticket)
       ticket.mark_as_stale
       true
     else
       false
     end
+  end
+
+  private
+
+  def exitable?(ticket)
+    from = STATIONS.index(ticket.from)
+    to = STATIONS.index(name)
+    distance = (to - from).abs
+    ticket.fee >= FEES[distance - 1]
   end
 end
