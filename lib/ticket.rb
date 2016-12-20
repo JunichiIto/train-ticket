@@ -4,7 +4,7 @@ class Ticket
   # @return [Integer] 切符の購入額
   attr_reader :fee
 
-  # 乗車駅の名前を返します。
+  # 乗車駅の名前を返します。<br>
   # まだ改札口を通っていない場合はnilを返します。
   # @return [Symbol, nil] 乗車駅の名前
   attr_reader :from
