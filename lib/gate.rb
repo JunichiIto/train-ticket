@@ -10,7 +10,7 @@ class Gate
   # @return [Symbol] 駅の名前
   attr_reader :name
 
-  # 有効な駅名を格納した配列です。
+  # @!visibility private
   STATIONS = [
       :umeda,   # 梅田
       :juso,    # 十三
@@ -18,7 +18,7 @@ class Gate
       :okamachi # 岡町
   ].freeze
 
-  # 区間ごとの運賃を格納した配列です。
+  # @!visibility private
   FEES = [
       150, # 1区間の運賃
       180, # 2区間の運賃
