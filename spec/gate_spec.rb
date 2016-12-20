@@ -35,6 +35,15 @@ describe Gate do
     umeda.enter(ticket)
     expect(okamachi.exit(ticket)).to be_truthy
 
+    # 梅田以外から乗車
+    ticket = Ticket.new(150)
+    juso.enter(ticket)
+    expect(okamachi.exit(ticket)).to be_falsey
+
+    ticket = Ticket.new(180)
+    juso.enter(ticket)
+    expect(okamachi.exit(ticket)).to be_truthy
+
     # 上り
     # 1区間
     ticket = Ticket.new(150)
@@ -61,6 +70,15 @@ describe Gate do
 
     ticket = Ticket.new(220)
     okamachi.enter(ticket)
+    expect(umeda.exit(ticket)).to be_truthy
+
+    # 岡町以外から乗車
+    ticket = Ticket.new(150)
+    shonai.enter(ticket)
+    expect(umeda.exit(ticket)).to be_falsey
+
+    ticket = Ticket.new(180)
+    shonai.enter(ticket)
     expect(umeda.exit(ticket)).to be_truthy
   end
 
