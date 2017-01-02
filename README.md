@@ -3,7 +3,7 @@ Sample app for Nishiwaki.rb &amp; Kobe.rb
 
 Question is here:
 
-https://gist.github.com/JunichiIto/39caae4f1c90499e2239785c3faf1b75
+[チケット・改札機問題](https://gist.github.com/JunichiIto/39caae4f1c90499e2239785c3faf1b75)
 
 ## Generate API document
 
