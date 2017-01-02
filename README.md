@@ -8,9 +8,17 @@ gem install yard
 yardoc lib/*.rb && open ./doc/index.html
 ```
 
-## How to run test
+## How to run tests
+
+Set up libraries:
 
 ```
+gem install bundler
 bundle install
+```
+
+Run tests:
+
+```
 bundle exec rspec
 ```
