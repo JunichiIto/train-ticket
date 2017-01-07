@@ -61,11 +61,8 @@ class Gate
     raise NotEnteredTicketError if ticket.from.nil?
     raise ExitSameStationError if ticket.from == name
 
-    if exitable?(ticket)
-      ticket.mark_as_stale
-      true
-    else
-      false
+    exitable?(ticket).tap do |ok|
+      ticket.mark_as_stale if ok
     end
   end
 
