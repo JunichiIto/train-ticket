@@ -2,7 +2,7 @@
 class Ticket
   # 切符の購入額を返します。
   # @return [Integer] 切符の購入額
-  attr_reader :fee
+  attr_reader :fare
 
   # 乗車駅の名前を返します。<br>
   # まだ改札口を通っていない場合はnilを返します。
@@ -10,9 +10,9 @@ class Ticket
   attr_reader :from
 
   # 切符を初期化します。
-  # @param fee [Integer] 切符の購入額
-  def initialize(fee)
-    @fee = fee
+  # @param fare [Integer] 切符の購入額
+  def initialize(fare)
+    @fare = fare
     @from = nil
     @stale = false
   end

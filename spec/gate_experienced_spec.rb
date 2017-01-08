@@ -1,8 +1,8 @@
 require_relative '../spec/spec_helper'
 
 describe Gate, 'for experienced' do
-  def assert_exit(from, to, fee, result)
-    ticket = Ticket.new(fee)
+  def assert_exit(from, to, fare, result)
+    ticket = Ticket.new(fare)
     gate_from = Gate.new(from)
     gate_to = Gate.new(to)
     gate_from.enter(ticket)
@@ -39,7 +39,7 @@ describe Gate, 'for experienced' do
   end
 
   context '下り全体' do
-    where(:from, :to, :fee, :result) do
+    where(:from, :to, :fare, :result) do
       [
           [:umeda, :juso, 150, true],
           [:umeda, :juso, 180, true],
@@ -60,13 +60,13 @@ describe Gate, 'for experienced' do
 
     with_them do
       example '判定が正しい' do
-        assert_exit(from, to, fee, result)
+        assert_exit(from, to, fare, result)
       end
     end
   end
 
   context '上り全体' do
-    where(:from, :to, :fee, :result) do
+    where(:from, :to, :fare, :result) do
       [
           [:okamachi, :shonai, 150, true],
           [:okamachi, :shonai, 180, true],
@@ -87,7 +87,7 @@ describe Gate, 'for experienced' do
 
     with_them do
       example '判定が正しい' do
-        assert_exit(from, to, fee, result)
+        assert_exit(from, to, fare, result)
       end
     end
   end

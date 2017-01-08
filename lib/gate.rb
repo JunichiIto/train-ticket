@@ -14,24 +14,24 @@
 #   umeda.enter(ticket)
 #   shonai.exit(ticket) #=> false
 class Gate
-  # 駅の名前を返します。
-  # @return [Symbol] 駅の名前
-  attr_reader :name
-
   # @!visibility private
   STATIONS = [
-      :umeda,   # 梅田
-      :juso,    # 十三
-      :shonai,  # 庄内
-      :okamachi # 岡町
+      :umeda,
+      :juso,
+      :shonai,
+      :okamachi
   ].freeze
 
   # @!visibility private
   FEES = [
-      150, # 1区間の運賃
-      180, # 2区間の運賃
-      220  # 3区間の運賃
+      150,
+      180,
+      220
   ].freeze
+
+  # 駅の名前を返します。
+  # @return [Symbol] 駅の名前
+  attr_reader :name
 
   # 改札口を初期化します。
   # @param name [Symbol] 駅の名前
@@ -72,6 +72,6 @@ class Gate
     from = STATIONS.index(ticket.from)
     to = STATIONS.index(name)
     distance = (to - from).abs
-    ticket.fee >= FEES[distance - 1]
+    ticket.fare >= FEES[distance - 1]
   end
 end
