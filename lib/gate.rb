@@ -23,7 +23,7 @@ class Gate
   ].freeze
 
   # @!visibility private
-  FEES = [
+  FARES = [
       150,
       180,
       220
@@ -72,6 +72,6 @@ class Gate
     from = STATIONS.index(ticket.from)
     to = STATIONS.index(name)
     distance = (to - from).abs
-    ticket.fare >= FEES[distance - 1]
+    ticket.fare >= FARES[distance - 1]
   end
 end
